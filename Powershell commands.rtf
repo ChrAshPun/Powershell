@@ -1,8 +1,90 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf610
-{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
+{\fonttbl\f0\fnil\fcharset0 Calibri;\f1\froman\fcharset0 Times-Roman;\f2\fnil\fcharset0 Cambria;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red37\green95\blue166;\red255\green255\blue255;
+\red39\green46\blue55;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c18039\c45490\c70980;\cssrgb\c100000\c100000\c100000;
+\cssrgb\c20392\c23922\c27843;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
 \margl1440\margr1440\vieww10800\viewh8400\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\f0\fs24 \cf0 test text}
+\f0\fs28 \cf0 \
+# Example Powershell Commands\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Get-Mailbox | select Name,Alias,OrganizationalUnit,PrimarySMTPAddress | Export-csv \'96path "C:/Temp/AllMailboxes.csv" -NoTypeInformation\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 \outl0\strokewidth0 # When the email address policy is enabled I can't change the primary SMTP address. \
+# I can disable it from the Exchange Admin Center or I can use Powershell.\'a0\
+\
+
+\fs29\fsmilli14667 Set-Mailbox <email address> -EmailAddressPolicyEnabled $false\'a0
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 Set-Mailbox <email address> -EmailAddresses SMTP:<email address>\'a0
+\f1\fs24 \
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs28 \cf2 \outl0\strokewidth0 \strokec2 \
+# Get mailbox sizes\
+\
+\pard\pardeftab720\sl360\sa240\partightenfactor0
+
+\fs29\fsmilli14667 \cf2 Get-Mailbox \'96OrganizationalUnit <OrganizationalUnit> -ResultSize Unlimited | Get-MailboxStatistics | select displayname,storagelimitstatus, @\{name="TotalItemSize (MB)"; expression=\{[math]::Round(($_.TotalItemSize.ToString().Split("(")[1].Split(" ")[0].Replace(",","")/1MB),2)\}\},ItemCount | Sort "TotalItemSize (MB)" -Descending | Export-csv \'96path "C:\\Temp\\MailboxSizes.csv" -NoTypeInformation\'a0
+\fs28 \
+\pard\pardeftab720\partightenfactor0
+\cf2 New-DistributionGroup -Name <Name> -Alias <Alias> -PrimarySmtpAddress <PrimarySmtpAddress> -ManagedBy <Alias> -OrganizationalUnit <OrganizationalUnit> -MemberDepartRestriction closed -MemberJoinRestriction closed\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 Set-DistributionGroup -Identity <Name> -customattribute1 AutoAlert -requiresenderauthenticationenabled $false\'a0\
+\
+\pard\pardeftab720\partightenfactor0
+
+\fs29\fsmilli14667 \cf2 Add-DistributionGroupMember <DistributionGroup> -Member "<email address>"\'a0
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 Get-DistributionGroupMember <DistributionGroup>\'a0\
+\
+\pard\pardeftab720\partightenfactor0
+
+\fs28 \cf2 # Update Customattribute1 For An Entire Database\'a0\
+\pard\pardeftab720\partightenfactor0
+\cf2 \strokec3 # List the current values for customattribute1 in a database\'a0\cf2 \strokec2 \'a0\
+\
+\cf2 \cb4 \strokec5 Get-Mailbox -Database Clipper_DB | select DisplayName, CustomAttribute1\
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb1 \strokec2 \'a0\
+\pard\pardeftab720\partightenfactor0
+\cf2 \strokec3 # Update customattribute1 for the entire database\cf2 \strokec2 \'a0\
+\
+\cf2 \cb4 \strokec5 Get-Mailbox -Database Clipper_DB | Set-Mailbox -CustomAttribute1 Clipper\cf2 \cb1 \strokec2 \'a0\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf2 \
+\
+
+\f0\fs28 \
+\
+
+\f1\fs24 \
+\pard\pardeftab720\sl380\sa240\partightenfactor0
+\cf2 \
+\
+\pard\pardeftab720\sl360\sa240\partightenfactor0
+
+\f0\fs28 \cf2 \'a0
+\f1\fs24 \
+
+\f2\fs28 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl380\sa293\partightenfactor0
+\ls1\ilvl0
+\f0\fs29\fsmilli14667 \cf2 \uc0\u8232 \
+\pard\pardeftab720\sl360\sa240\partightenfactor0
+
+\f1\fs24 \cf2 \
+}
