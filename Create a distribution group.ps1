@@ -4,4 +4,4 @@ New-DistributionGroup -Name <Name> -Alias <Alias> -PrimarySmtpAddress <PrimarySm
 
 # Set a custom attribute
 
-Set-DistributionGroup -Identity <Name> -customattribute1 AutoAlert -requiresenderauthenticationenabled $false 
+Set-DistributionGroup -Identity <Name> -customattribute1 <customattribute> -requiresenderauthenticationenabled $false 
