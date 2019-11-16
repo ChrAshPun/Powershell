@@ -1,12 +1,12 @@
 # You can add one member at a time like this: 
 
-Add-DistributionGroupMember <DistributionGroup> -Member "<email address>" 
-Get-DistributionGroupMember <DistributionGroup> 
+Add-DistributionGroupMember <distribution group> -Member "<email address>" 
+Get-DistributionGroupMember <distribution group> 
 
 # How to add multiple members to multiple distribution groups
 # 1. Export a csv file of the distribution groups 
 
-Get-DistributionGroup -OrganizationalUnit <organizationalunit> | select <Name> | Export-csv "C:Temp\distributiongroups.csv"
+Get-DistributionGroup -OrganizationalUnit <organizational unit> | select <Name> | Export-csv "C:Temp\distributiongroups.csv"
 
 # remove any groups you don't need
 # On Notepad, it should look like this:
