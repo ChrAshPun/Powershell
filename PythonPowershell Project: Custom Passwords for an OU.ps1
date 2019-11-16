@@ -45,6 +45,5 @@ $users = Import-csv "C:\Temp\Passwords.csv"
 ForEach ($user in $users)
 {
     Set-ADAccountPassword -Identity $user.DistinguishedName -NewPassword (ConvertTo-SecureString $user.Password -AsPlainText -force) -Reset
-    
     Write-Host "The password for $user.Name "has been changed to" $user.Password
 }
