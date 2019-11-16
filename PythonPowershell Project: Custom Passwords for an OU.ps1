@@ -32,7 +32,7 @@ for index, value in enumerate(list):
 # On Notepad, the csv file looked like this:
 
 '''
-Name,Password,DstinguishedName
+Name,Password,DistinguishedName
 Bob Smith, P@ssw0rdBS, "CN=...DC=local"
 etc
 '''
