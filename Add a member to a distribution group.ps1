@@ -1,4 +1,4 @@
-# Add a member to a distribution group
+# How to add a member to a distribution group
 
-Add-DistributionGroupMember <DistributionGroup> -Member "<email address>" 
-Get-DistributionGroupMember <DistributionGroup> 
+Add-DistributionGroupMember <DistributionGroup> -Member "<email address>" 
+Get-DistributionGroupMember <DistributionGroup> 

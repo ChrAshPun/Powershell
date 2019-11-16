@@ -1,5 +1,6 @@
-# When the email address policy is enabled I can't change the primary SMTP address. 
-# I can disable it from the Exchange Admin Center or I can use Powershell. 
+# The primary SMTP address cannot be changed until the email address policy is disabled
+# Disable the policy from the Exchange Admin Center or use Powershell
+# The Identity parameter also accepts <email address> and <GUID> as values
 
-Set-Mailbox <email address> -EmailAddressPolicyEnabled $false 
-Set-Mailbox <email address> -EmailAddresses SMTP:<email address> 
+Set-Mailbox -Identity <alias> -EmailAddressPolicyEnabled $false 
+Set-Mailbox -Identity <alias> -EmailAddresses SMTP:<email address> 
